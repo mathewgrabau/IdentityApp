@@ -21,10 +21,14 @@
                     <td>@p.Category</td>
                     <td class="text-right">$@p.Price.ToString("F2")</td>
                     <td class="text-center">
-                        <a href="" class="btn btn-sm btn-warning"></a>
+                        <form method="post">
+                            <a class="btn btn-sm btn-warning" asp-action="edit" asp-route-id="@p.Id">Edit</a>
+                            <button class="btn btn-sm btn-danger" asp-action="delete" asp-route-id="@p.Id">Delete</button>
+                        </form>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
+<a class="btn btn-primary mx-2" asp-action="Create">Create</a>
