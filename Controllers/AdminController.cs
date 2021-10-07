@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 using IdentityApp.Models;
 
 namespace IdentityApp.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller 
     {
         private ProductDbContext _context;
