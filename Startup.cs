@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -36,6 +38,17 @@ namespace IdentityApp
             {
                 options.HttpsPort = 44350;
             });
+
+            // MigrationsAssembly option means the migrations get added to that project (since the context is in another project).
+            services.AddDbContext<IdentityDbContext>(options => 
+            {
+                options.UseSqlServer(
+                    _configuration["ConnectionStrings:IdentityConnection"],
+                    options => options.MigrationsAssembly("IdentityApp")
+                );
+            });
+
+            services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<IdentityDbContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
