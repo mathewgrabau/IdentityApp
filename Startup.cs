@@ -53,6 +53,12 @@ namespace IdentityApp
             services.AddScoped<IEmailSender, ConsoleEmailSender>();
 
             services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<IdentityDbContext>();
+
+            services.AddAuthentication().AddGoogle(options=>
+            {
+                options.ClientId = _configuration["Google:ClientId"];
+                options.ClientSecret = _configuration["Google:ClientSecret"];
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
