@@ -7,11 +7,13 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using IdentityApp.Models;
+using IdentityApp.Services;
 
 namespace IdentityApp
 {
@@ -47,6 +49,8 @@ namespace IdentityApp
                     options => options.MigrationsAssembly("IdentityApp")
                 );
             });
+
+            services.AddScoped<IEmailSender, ConsoleEmailSender>();
 
             services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<IdentityDbContext>();
         }
