@@ -3,6 +3,7 @@
 <head>
     <meta name="viewport" content="width:device-width" />
     <title>Identity App</title>
+    <script src="/Identity/lib/jquery/dist/jquery.js"></script>
     <link rel="stylesheet" href="/lib/twitter-bootstrap/css/bootstrap.min.css" />
 </head>
 <body>
@@ -13,5 +14,6 @@
     </nav>
     <partial name="_NavigationPartial" />
     @RenderBody()
+    @RenderSection("Scripts", required: false)
 </body>
 </html>
